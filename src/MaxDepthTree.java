@@ -4,7 +4,7 @@ public class MaxDepthTree {
         TreeNode root = new TreeNode(18, new TreeNode(16, new TreeNode(15), new TreeNode(13)), new TreeNode(12));
         System.out.println(maxDepthBot(root));
     }
-
+//bottme up calculation
     private static int maxDepthBot(TreeNode root) {
         if (root == null)return 0;
         int leftDepth = maxDepthBot(root.left);
