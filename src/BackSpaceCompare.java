@@ -2,7 +2,7 @@ public class BackSpaceCompare {
     public static void main(String[] args) {
         String value1 = "ad#c";
         String value2 = "c#e#c";
-        System.out.println(backSpaceCompare(value1, value2));
+        System.out.println(backSpaceCompare2(value1, value2));
     }
 
     private static boolean backSpaceCompare(String value1, String value2) {
@@ -22,5 +22,47 @@ public class BackSpaceCompare {
         }
         if (stringBuilder1.toString().equals(stringBuilder2.toString()))return true;
         return false;
+    }
+    private static boolean backSpaceCompare2(String value1, String value2) {
+  int s_pointer= value1.length()-1;
+        int t_pointer= value2.length()-1;
+
+        int s_skips = 0;
+        int t_skips = 0;
+        while (s_pointer >= 0 || t_pointer >= 0) {
+            while (s_pointer >= 0) {
+                if (value1.charAt(s_pointer) == '#') {
+                    s_skips += 1;
+                    s_pointer -= 1;
+                } else if (s_skips > 0) {
+                    s_pointer -= 1;
+                    s_skips -= 1;
+                } else {
+                    break;
+                }
+            }
+
+                while (t_pointer >= 0) {
+                    if (value2.charAt(t_pointer) == '#') {
+                        t_skips += 1;
+                        t_pointer -= 1;
+                    } else if (t_skips > 0) {
+                        t_pointer -= 1;
+                        t_skips -= 1;
+                    } else {
+                        break;
+
+                    }
+                }
+
+
+                if (s_pointer >= 0 && t_pointer >= 0 && value1.charAt(s_pointer) != value2.charAt(t_pointer))
+                    return false;
+                if ((s_pointer >= 0) != (t_pointer >= 0)) return false;
+                s_pointer -= 1;
+                t_pointer -= 1;
+            }
+
+        return true;
     }
 }
