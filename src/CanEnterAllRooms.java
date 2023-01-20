@@ -1,14 +1,37 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CanEnterAllRooms {
     public static void main(String[] args) {
         int[][] arr = {{1}, {2}, {3}, {}};
         System.out.println(canEnterAllRoomes(arr));
-
+        List<List<Integer>> rooms = List.of(List.of(1), List.of(2), List.of(3), List.of());
+        System.out.println(canEnterAllRoomes2(rooms));
 
 
 }
+
+    private static boolean canEnterAllRoomes2(List<List<Integer>> rooms) {
+        boolean[] seen = new boolean[rooms.size()];
+        seen[0]=true;
+
+        Stack<Integer> keys = new Stack<>();
+        keys.add(0);
+        while (!keys.isEmpty()){
+            int current = keys.pop();
+
+            for (int newKey:rooms.get(current)){
+                if (!seen[newKey]){
+                    seen[newKey] = true;
+                    keys.add(newKey);
+                }
+            }
+        }
+        for (boolean visited:seen){
+            if (!visited)return false;
+        }
+        return true;
+    }
+
     private static boolean canEnterAllRoomes(int[][] arr) {
 
         Map<Integer, Boolean> map = new HashMap<>();
