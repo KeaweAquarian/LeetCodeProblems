@@ -4,51 +4,59 @@ import java.util.Stack;
 
 public class AddTwoNumbers {
     public static void main(String[] args) {
-        ListNode l1 = new ListNode(9);
-        l1 = new ListNode(4, l1);
-        l1 = new ListNode(6, l1);
-        l1 = new ListNode(5, l1);
+//        ListNode l1 = new ListNode(9);
+//        l1 = new ListNode(4, l1);
+//        l1 = new ListNode(6, l1);
+//        l1 = new ListNode(5, l1);
+//
+//
+//        ListNode l2 = new ListNode(9);
+//        l2 = new ListNode(4, l2);
+//        l2 = new ListNode(2, l2);
+//
+//
+//        ListNode listNode = new ListNode();
+//        listNode = addTwoNumbers(l1, l2);
+//
+//        while(listNode != null){
+//            System.out.println(listNode.val);
+//            listNode = listNode.next;
+//        }
 
+int i = 0;
 
-        ListNode l2 = new ListNode(9);
-        l2 = new ListNode(4, l2);
-        l2 = new ListNode(2, l2);
-
-
-        ListNode listNode = new ListNode();
-        listNode = addTwoNumbers(l1, l2);
-
-        while(listNode != null){
-            System.out.println(listNode.val);
-            listNode = listNode.next;
+        for (int j = 0; j < 5; j++) {
+             i++;
         }
-
-
-
+        System.out.println(i);
     }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode temp = new ListNode();
-        int val1 = 0;
-        int val2 = 0;
+        StringBuilder val1 = new StringBuilder();
+        StringBuilder val2 = new StringBuilder();
         while (l1 != null){
-            val1 = l1.val + val1 * 10;
+            val1.append(l1.val+"");
             l1 = l1.next;
         }
+        val1 = val1.reverse();
+
         while (l2 != null){
-            val2 = l2.val + val2*10;
+            val2.append(l2.val+"");
             l2 = l2.next;
         }
-        val1 = val1 + val2;
+        val2 = val2.reverse();
+
+        int value = Integer.valueOf(val1.toString())  + Integer.valueOf(val2.toString());
 
         Stack<Integer> stack = new Stack<>();
-        while((val1) > 10){
-            int currentInt = val1 % 10;
+        while((value) > 10){
+            int currentInt = value % 10;
             stack.push(currentInt);
-            val1 = val1/10;
+            value = value/10;
 
         }
-        stack.push(val1);
+        stack.push(value);
 
         if(stack.peek()>9){
          temp.val = 1;
