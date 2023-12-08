@@ -13,16 +13,16 @@ public class SearchA2DMatrix {
         int right = rows*columns-1;
 
         while (left <= right){
-            int current = right + (right-left)/2;
-            int midElement = matrix[current/current][current%rows];
+            int current = left + (right-left)/2;
+            int midElement = matrix[current/columns][current%columns];
             if (midElement == target){
                 result = true;
                 return result;
-            } else if (target < midElement) {
-                left = current++;
+            } else if (midElement < target) {
+                left = current + 1;
 
-            } else if (midElement > target ) {
-                right = current--;
+            } else {
+                right = current - 1;
             }
         }
 
